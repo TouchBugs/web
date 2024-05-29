@@ -10,11 +10,27 @@
             border: none;
             /* 左右居中 */
             margin: 0 auto;
-
+            position: relative; /* 添加这一行，使得子元素可以相对于此元素定位 */
+        }
+        .rectangle img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 使得图片居中 */
         }
     </style>
 </head>
 <body>
-    <div class="rectangle"></div>
+    <div class="rectangle">
+        <img id="myImg" src="./658610.jpg" alt="Image">
+        <span id="clickCount" style="position:absolute; top:10px; left:10px;">0</span>
+    </div>
+    <script>
+        var count = 0;
+        document.getElementById('myImg').addEventListener('click', function() {
+            count++;
+            document.getElementById('clickCount').textContent = count;
+        });
+    </script>
 </body>
 </html>

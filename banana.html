@@ -17,15 +17,21 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%); /* 使得图片居中 */
-            width: 120px; /* 限制图片宽度 */
-            height: 67px; /* 限制图片高度 */
+            max-width: 200px; /* 限制图片宽度 */
+            max-height: 200px; /* 限制图片高度 */
+        }
+        .rectangle #gif {
+            position: absolute;
+            top: 30px; /* 数字高度 + 10px */
+            left: 10px;
         }
     </style>
 </head>
 <body>
     <div class="rectangle">
-        <img id="myImg" src="./image.png" alt="Image">
+        <img id="myImg" src="./658610.jpg" alt="Image">
         <span id="clickCount" style="position:absolute; top:10px; left:10px;">0</span>
+        <img id="gif" src="./1.gif" alt="Gif">
     </div>
     <script>
         var count = 0;

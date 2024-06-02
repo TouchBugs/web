@@ -4,41 +4,56 @@
     <title>Banana</title>
     <style>
         .rectangle {
-            width: 800px;
-            height: 600px;
+            width: 700px;
+            height: 500px;
             background-color: #FFFFCC;
             border: none;
             /* 左右居中 */
             margin: 0 auto;
-            position: relative; /* 添加这一行，使得子元素可以相对于此元素定位 */
+            position: relative; 
         }
         .rectangle img {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%); /* 使得图片居中 */
-            max-width: 200px; /* 限制图片宽度 */
-            max-height: 200px; /* 限制图片高度 */
+            transition: transform 0.5s; 
         }
-        /* .rectangle #gif {
+         .rectangle #gif {
             position: absolute;
-            top: 100px; 
-            left: 10px;
-        } */
+            top: 100%; 
+            left: 90%;
+        } 
     </style>
 </head>
 <body>
     <div class="rectangle">
-        <img id="myImg" src="./image.png" alt="Image">
-        <span id="clickCount" style="position:absolute; top:10px; left:10px;">0</span>
-        <!-- <img id="gif" src="./1.gif" alt="Gif"> -->
+        <img id="banana" src="./image.png" alt="Image" height="200">
+        <span id="clickCount" style="position:absolute; top:10px; left:10px; color: brown;">0</span>
+         <!--<img id="gif" src="./1.gif" alt="Gif"> -->
     </div>
     <script>
         var count = 0;
-        document.getElementById('myImg').addEventListener('click', function() {
+        document.getElementById('banana').addEventListener('mousedown', function() {
             count++;
             document.getElementById('clickCount').textContent = count;
+            document.getElementById('banana').height = "220";
+            if (count > 0 && count % 10 === 0) {
+                rotateBanana();
+            }
         });
+        document.getElementById('banana').addEventListener('mouseup', function() {
+            document.getElementById('banana').height = "200";
+        });
+
+        function rotateBanana() {
+            var banana = document.getElementById('banana');
+            // 重置transform属性，保持居中
+            banana.style.transform = 'translate(-50%, -50%) rotate(360deg)';
+            setTimeout(function() {
+                banana.style.transform = 'translate(-50%, -50%)';
+            }, 500); 
+            }
     </script>
 </body>
 </html>

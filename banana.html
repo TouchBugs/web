@@ -19,7 +19,7 @@
             transform: translate(-50%, -50%); /* 使得图片居中 */
             transition: transform 0.5s; 
         }
-         .rectangle #gif {
+        .rectangle #gif {
             position: absolute;
             top: 100%; 
             left: 90%;
@@ -34,17 +34,19 @@
     </div>
     <script>
         var count = 0;
-        document.getElementById('banana').addEventListener('mousedown', function() {
+
+        function incrementCount() {
             count++;
             document.getElementById('clickCount').textContent = count;
-            document.getElementById('banana').height = "220";
+            document.getElementById('banana').height = 220; // 更改为数值形式
             if (count > 0 && count % 10 === 0) {
                 rotateBanana();
             }
-        });
-        document.getElementById('banana').addEventListener('mouseup', function() {
-            document.getElementById('banana').height = "200";
-        });
+        }
+
+        function resetBananaSize() {
+            document.getElementById('banana').height = 200; // 更改为数值形式
+        }
 
         function rotateBanana() {
             var banana = document.getElementById('banana');
@@ -53,7 +55,19 @@
             setTimeout(function() {
                 banana.style.transform = 'translate(-50%, -50%)';
             }, 500); 
-            }
+        }
+
+        var bananaElement = document.getElementById('banana');
+        bananaElement.addEventListener('mousedown', incrementCount);
+        bananaElement.addEventListener('mouseup', resetBananaSize);
+        bananaElement.addEventListener('touchstart', function(event) {
+            event.preventDefault(); // 防止默认的触摸行为
+            incrementCount();
+        });
+        bananaElement.addEventListener('touchend', function(event) {
+            event.preventDefault(); // 防止默认的触摸行为
+            resetBananaSize();
+        });
     </script>
 </body>
 </html>
